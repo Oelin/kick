@@ -77,6 +77,8 @@ def main():
 
         print('Starting deauthenticate attack. ^C to quit.')
         exploit(*argv[1:])
+        
+        print('Bye')
 
     else:
         print(__doc__)
