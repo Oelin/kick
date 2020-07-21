@@ -1,2 +1,2 @@
-# kick
-A proof-of-concept for IEEE 802.11 deauthentication attacks.
+# jolt
+PoC for disassociation attacks on IEEE 802.11.
