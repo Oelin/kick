@@ -24,7 +24,7 @@ def construct(wap, sta):
 
 
 def flood(iface, packet):
-    # Create a raw socket able to transmit from the data link layer.
+    # use a raw socket to transmit link layer.
 
     link = socket(AF_PACKET, SOCK_RAW, 0)
     link.bind((iface, 0))
@@ -45,10 +45,10 @@ def start(iface, wap, sta):
 def main():
     if len(argv) == 4:
 
-        print('sending disassoc frames, hit ^C to stop.')
+        print('@ sending frames...')
         start(*argv[1:])
         
-        print('bye')
+        print('@ stopped.')
 
     else:
         print(__doc__)
