@@ -43,4 +43,4 @@ def start():
 
 
 start()
-print('@ stopped.')
+print('@ stopped')
